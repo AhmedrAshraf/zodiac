@@ -3,8 +3,11 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  // Same port and output folder as Create React App, which the backend's CORS
-  // whitelist (localhost:3000) and static serving (../frontend/build) rely on
-  server: { port: 3000 },
+  server: {
+    port: 3000,
+    // Send API calls to the local backend, like Vercel does in production (see vercel.json)
+    proxy: { '/api': 'http://localhost:5001' }
+  },
+  // Same output folder as Create React App, which backend/app.js serves for the Heroku setup
   build: { outDir: 'build' }
 });

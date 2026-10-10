@@ -1,10 +1,8 @@
 import axios from 'axios';
-let baseURL;
 
-process.env.NODE_ENV === 'production'
-  ? (baseURL = 'https://limitless-wildwood-88424.herokuapp.com')
-  // ? (baseURL = window.location.origin)
-  : (baseURL = 'http://localhost:5000');
+// The backend is served under /api on the same domain: by Vercel in production,
+// and by the Vite dev server proxy locally (see vite.config.mjs)
+const baseURL = '/api';
 
 const service = axios.create({ withCredentials: true, baseURL });
 
