@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import actions from "../../services/index";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
+import withRouter from "../../withRouter";
 
 
 class Amaken extends Component {
@@ -62,4 +63,4 @@ class Amaken extends Component {
   }
 }
 
-export default Amaken;
+export default withRouter(Amaken);

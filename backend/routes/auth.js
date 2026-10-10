@@ -29,8 +29,10 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
 });
 
 router.get('/logout', (req, res, next) => {
-  req.logout();
-  res.status(200).json({ msg: 'Logged out' });
+  req.logout((err) => {
+    if (err) return next(err);
+    res.status(200).json({ msg: 'Logged out' });
+  });
 });
 
 router.get('/profile', isAuth, (req, res, next) => {

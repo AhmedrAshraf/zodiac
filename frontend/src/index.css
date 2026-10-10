@@ -171,8 +171,12 @@ nav {
   justify-content: space-between;
   height: 40px;
   background-color: black;
-  
+
 }
+
+/* Bootstrap 5 underlines links by default; keep Bootstrap 4's look */
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
 .social{
   width: 220px;
   

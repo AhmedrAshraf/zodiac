@@ -1,9 +1,19 @@
 # IronPlate
 ##### git fork and/or clone https://github.com/Tzikas/IronPlate.git
+## Requirements
+##### Node 22+ (Node 24 LTS recommended, run `nvm use`)
+
+## Set up DB (Supabase)
+##### Create a project at supabase.com
+##### SQL Editor -> New query -> paste backend/supabase/schema.sql -> Run
+##### Copy backend/.env.example to backend/.env and fill in SUPABASE_URL and SUPABASE_SECRET_KEY (Project Settings -> API Keys)
+##### Optional: seed sample clothing with `node bin/seeds.js` from backend/
+
 ## Start Server
 ##### cd backend/ 
 ##### npm i 
-##### nodemon 
+##### npm run dev
+##### On macOS, if port 5000 is taken, turn off AirPlay Receiver (System Settings -> General -> AirDrop & Handoff)
 
 
 ## Start client
@@ -11,18 +21,13 @@
 ##### npm i 
 ##### npm start
 
-
-## Deploy DB
-##### sign in with Atlas. 
-##### Get connection string and add it to .env file. MONGDB_URI = ...
-
 ## Deploy to Heroku
 ##### heroku create 
 ##### git add . 
 ##### git commit -m 'deploying' 
 ##### git push
 ##### git push heroku master
-##### add convig var for MONGDB_URI in heroku dashboard
+##### add config vars for SUPABASE_URL and SUPABASE_SECRET_KEY in heroku dashboard
 
 
 ## Deploy to Netlify

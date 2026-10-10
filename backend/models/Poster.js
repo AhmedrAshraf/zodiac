@@ -1,13 +1,9 @@
-const { Schema, model } = require('mongoose');
+const model = require('./model');
 
-const PosterSchema = new Schema(
-  {
-    type: String,
-    Size: String,
-    userId: Schema.Types.ObjectId,
-    collabId: Schema.Types.ObjectId
-  }
- 
-);
-
-module.exports = model('Poster', PosterSchema);
+module.exports = model('posters', {
+  _id: 'id',
+  type: 'type',
+  Size: 'size',
+  userId: 'user_id',
+  collabId: 'collab_id'
+});

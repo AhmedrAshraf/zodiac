@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-
+import { Navigate } from 'react-router';
 
 
 const Profile = (props) => {
-    if(!props.user.email){ 
-        props.history.push('/log-in') 
-    }   
+    if(!props.user.email){
+        return <Navigate to='/log-in' />
+    }
     return (
         <div className="background2">
         <video autoPlay muted loop id="videobg2">

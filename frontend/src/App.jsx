@@ -1,13 +1,13 @@
 import React, {Component, Fragment} from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router';
 import Home from './components/home/Home';
-import NotFound from './components/404/NotFound.js';
+import NotFound from './components/404/NotFound.jsx';
 import SignUp from './components/auth/SignUp';
 import LogIn from './components/auth/LogIn';
 import Profile from './components/profile/Profile'
 import actions from './services/index'
 import Apparel from './components/clothing/clothing';
-import Prints from './components/Post/Prints.js'
+import Prints from './components/Post/Prints.jsx'
 import Mens from './components/clothing/Mens clothing/Mens';
 import Womens from './components/clothing/Womens clothing/Womens';
 import Etc from './components/clothing/Acessories/Etc';
@@ -62,21 +62,21 @@ class App extends Component {
       </nav>
       
 
-      <Switch>
-        <Route exact path="/" render={(props) => <Home {...props} />} />
-        <Route exact path="/sign-up" render={(props)=><SignUp {...props} setUser={this.setUser} />} />
-        <Route exact path="/log-in" render={(props) => <LogIn {...props} setUser={this.setUser}/>} />
-        <Route exact path="/profile" render={(props) => <Profile {...props} user={this.state}/>} />
-        <Route exact path="/Apparel" render={(props) => <Apparel {...props} />} />
-        <Route exact path="/Prints" render={(props) => <Prints {...props} />} />
-        <Route exact path="/Mens" render={(props) => <Mens {...props} />} />
-        <Route exact path="/Womens" render={(props) => <Womens {...props} />} />
-        <Route exact path="/Etc" render={(props) => <Etc {...props} />} />
-        <Route exact path="/Collabs" render={(props) => <Collabs {...props}email={this.state.email}id={this.state._id} />} />
-        <Route exact path="/Works" render={(props) => <Amaken {...props} />} />
-        <Route exact path="/newCollab" render={(props) => <NewCollab {...props} />} />
-        <Route component={NotFound} />
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/sign-up" element={<SignUp setUser={this.setUser} />} />
+        <Route path="/log-in" element={<LogIn setUser={this.setUser}/>} />
+        <Route path="/profile" element={<Profile user={this.state}/>} />
+        <Route path="/Apparel" element={<Apparel />} />
+        <Route path="/Prints" element={<Prints />} />
+        <Route path="/Mens" element={<Mens />} />
+        <Route path="/Womens" element={<Womens />} />
+        <Route path="/Etc" element={<Etc />} />
+        <Route path="/Collabs" element={<Collabs email={this.state.email}id={this.state._id} />} />
+        <Route path="/Works" element={<Amaken />} />
+        <Route path="/newCollab" element={<NewCollab />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
   );
   }

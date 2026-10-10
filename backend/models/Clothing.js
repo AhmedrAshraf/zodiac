@@ -1,16 +1,9 @@
-const { Schema, model } = require('mongoose');
+const model = require('./model');
 
-const clothingSchema = new Schema(
-  {
-    type: String,
-    color: String,
-    userId: Schema.Types.ObjectId,
-    collabId: Schema.Types.ObjectId
-  }
- 
-);
-
-module.exports = model('Clothing', clothingSchema);
-
-
-
+module.exports = model('clothing', {
+  _id: 'id',
+  type: 'type',
+  color: 'color',
+  userId: 'user_id',
+  collabId: 'collab_id'
+});

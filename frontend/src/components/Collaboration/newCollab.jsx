@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import actions from '../../services/index'
 import {TwitterShareButton} from "react-share"
 import service from '../../api/service';
+import withRouter from '../../withRouter';
 
 class NewCollab extends Component {
 
@@ -68,4 +69,4 @@ class NewCollab extends Component {
     }
 }
 
-export default NewCollab;
+export default withRouter(NewCollab);

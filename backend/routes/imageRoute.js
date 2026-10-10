@@ -1,8 +1,8 @@
 const express = require('express');
 const router  = express.Router();
 
-// include CLOUDINARY:
-const uploader = require('../config/cloudinary-setup');
+// include SUPABASE STORAGE:
+const { uploader, saveToStorage } = require('../config/storage-setup');
 
 router.post('/upload', uploader.single("imageUrl"), (req, res, next) => {
     console.log('file is: ', req.file)
@@ -11,9 +11,11 @@ router.post('/upload', uploader.single("imageUrl"), (req, res, next) => {
       next(new Error('No file uploaded!'));
       return;
     }
-    // get secure_url from the file object and save it in the 
-    // variable 'secure_url', but this can be any name, just make sure you remember to use the same in frontend
-    res.json({ secure_url: req.file.path });
+    // upload to Supabase Storage and send the public URL back as 'secure_url',
+    // the name the frontend already uses
+    saveToStorage(req.file)
+      .then((url) => res.json({ secure_url: url }))
+      .catch(next);
 })
 
 module.exports = router;

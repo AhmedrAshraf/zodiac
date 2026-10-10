@@ -12,14 +12,14 @@ router.post('/savenewCollab',isAuth,(req, res, next) => {
   Collabart.userId= req.user._id
   Collab.create(Collabart).then(col=> {
     res.json(col)
-  })
+  }).catch(next)
 })
 router.get('/getMycollabs',isAuth,(req, res, next) => {
   // chang query to find by sharetrue
   console.log('collab')
     Collab.find({userId:req.user._id}).then(collabs => {
       res.json({collabs})
-    })
+    }).catch(next)
 
 })
 router.get('/getallcollabs',(req, res, next) => {
@@ -28,45 +28,43 @@ router.get('/getallcollabs',(req, res, next) => {
     Collab.find({Live:true}).then(collabs => {
       console.log(collabs)
       res.json({collabs})
-    })
+    }).catch(next)
 
 })
 router.get('/Amaken',isAuth,(req, res, next) => {
   console.log()
-  Collab.findById({userId:req.user._id}).then(collabs => {
+  Collab.find({userId:req.user._id}).then(collabs => {
     res.json({collabs})
-  })
+  }).catch(next)
 
 
 })
 router.post('/shift',isAuth,(req, res, next) => {
   console.log(req.body)
-  Collab.findByIdAndUpdate({_id:req.body.id},{
+  Collab.findByIdAndUpdate(req.body.id,{
     Live : true
-  },{new:true}).then(collabs => {
+  }).then(collabs => {
     res.json({collabs})
-  })
-  
+  }).catch(next)
+
 
 })
 router.post('/unshift',isAuth,(req, res, next) => {
   console.log(req.body  )
-  Collab.findByIdAndUpdate({_id:req.body.id},{
+  Collab.findByIdAndUpdate(req.body.id,{
     Live : false
-  },{new:true}).then(collabs => {
+  }).then(collabs => {
     res.json({collabs})
-  })
-  
-  
-  router.get('/getPoster', (req, res) => {
-      console.log("awesome")
-      Poster.find().then(data => {
-          res.json(data)
-      })
-  
-      
-  });
+  }).catch(next)
 })
+
+router.get('/getPoster', (req, res, next) => {
+    console.log("awesome")
+    Poster.find().then(data => {
+        res.json(data)
+    }).catch(next)
+});
+
 function isAuth(req, res, next) {
   req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });
 }
